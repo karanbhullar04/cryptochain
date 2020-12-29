@@ -27,6 +27,8 @@ const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wal
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
+app.get("/test", (req, res) => res.json({ msg: "backend works" }));
+
 app.get('/api/blocks', (req, res) => {
   res.json(blockchain.chain);
 });
@@ -97,7 +99,7 @@ app.get('/api/mine-transactions', (req, res) => {
   res.redirect('/api/blocks');
 });
 
-app.get('/api/wallet-info', (req, res) => {
+app.get('/getbalance', (req, res) => {
   const address = wallet.publicKey;
 
   res.json({
